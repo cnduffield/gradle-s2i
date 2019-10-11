@@ -1,4 +1,4 @@
-apiVersion: template.openshift.io/v1
+apiVersion: build.openshift.io/v1
 kind: Template
 labels:
   application: springboot-gradle-s2i
@@ -9,7 +9,7 @@ metadata:
     tags: instant-app,springboot,gradle,java
   name: springboot-gradle-s2i
 objects:
-- apiVersion: template.openshift.io/v1
+- apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     name: ${APPLICATION_NAME}
@@ -45,7 +45,7 @@ objects:
       type: Generic
     - imageChange: {}
       type: ImageChange
-- apiVersion: template.openshift.io/v1
+- apiVersion: build.openshift.io/v1
   kind: ImageStream
   metadata:
     name: ${APPLICATION_NAME}
@@ -91,7 +91,7 @@ objects:
           kind: ImageStreamTag
           name: ${APPLICATION_NAME}:latest
       type: ImageChange
-- apiVersion: template.openshift.io/v1
+- apiVersion: build.openshift.io/v1
   kind: Route
   metadata:
     name: ${APPLICATION_NAME}
@@ -100,7 +100,7 @@ objects:
     to:
       kind: Service
       name: ${APPLICATION_NAME}
-- apiVersion: template.openshift.io/v1
+- apiVersion: build.openshift.io/v1
   kind: Service
   metadata:
     name: ${APPLICATION_NAME}
